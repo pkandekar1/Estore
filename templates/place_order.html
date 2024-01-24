@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+<h2 class= "text-danger text-center"><strong>Placed Orders</strong></h2>
+<div class="row mt-4"> <!---row 2 start--->
+
+    <div class="col-md-9">
+        <h5 class="bg-danger text-white p-2 rounded shadow">Customer Details:</h5>
+        <hr>
+        {% for x in products %}
+        {% if forloop.counter == 1 %}
+        <p><strong>Name:</strong>&nbsp;&nbsp;{{x.uid.username}}</p>
+        <p><strong>Email:</strong>&nbsp;&nbsp;{{x.uid.email}}</p>
+        {% endif %}
+        {% endfor %}
+        <div class="mt-3 shadow rounded pb-3">
+            <div class="row">
+                {% for x in products %}
+                <div class="col-md-6 pt-3" >
+                    <img src="{{x.pid.pimage.url}}" width="300px">
+                </div>
+            
+                <div class="col-md-6">
+                    <p><strong>Product Name:</strong>&nbsp;&nbsp;{{x.pid.name}}</p>
+                    <p><strong>Price:</strong>&nbsp;&nbsp;Rs.{{x.pid.price}}</p>
+                    <p><strong>Category:</strong>&nbsp;&nbsp;{{x.pid.cat}}</p>
+                    <p><strong>Product Description:</strong>&nbsp;&nbsp;{{x.pid.pdetails}}</p>
+                    <p><strong>Qty:</strong></p>
+
+                    <a href="/updateqty/1/{{x.id}}"><button class="btn btn-danger">+</button></a>
+                    <input type="number" value="{{x.qty}}">
+                    <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                        <a href="/Remove/{{x.id}}"><button class="btn btn-danger">Remove</button></a>
+                </div>
+                {% endfor %}
+            </div>
+    
+        </div>
+        
+    </div>
+
+    <div class="col-md-3 mt-5">
+        <div class="shadow p-3">
+            <h4>Price Details:</h4>
+            <hr>
+            <p><strong>Price{{np}}</strong>Rs {{total}}</p>
+            <hr>
+            <p><strong>Total Amount:{{np}}</strong>Rs {{total}}</p>
+            <a href="/makepayment"><button class="btn btn-danger">Make Payment</button></a>
+        </div>
+    </div>
+</div> <!---row 2 end--->
+
+{% endblock 'main' %}

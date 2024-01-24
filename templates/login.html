@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: auto;
+        margin-top: 100px;
+    }
+</style>
+<div class="container login-container shadow mb-5 rounded">
+    <h2 class="text-center mb-4 text-danger">Login</h2>
+    {% if errmsg %}
+    <div class="alert alert-danger">
+        {{errmsg}}
+    </div>
+    {% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username"><strong>Username:</strong></label>
+            <input type="text" class="form-control" id="username" name="uname" placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+            <label for="password"><strong>Password:</strong></label>
+            <input type="password" class="form-control" id="password" name="upass" placeholder="Enter your password">
+        </div>
+        <div class="form-group">
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div><br>
+        <button type="submit" class="btn btn-danger btn-block">Login</button>
+        Not a User?<a href="/registration" style="text-decoration: none;">Resgister</a>
+        <br><br>
+    </form>
+</div>
+
+{% endblock 'main' %}
